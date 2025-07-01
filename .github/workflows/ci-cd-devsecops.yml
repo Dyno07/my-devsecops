@@ -1,0 +1,51 @@
+name: DevSecOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  devsecops-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Run Gitleaks
+      uses: gitleaks/gitleaks-action@v2
+      with:
+        config-path: .gitleaks.toml
+        fail: true
+
+    - name: Run Trivy FS scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: fs
+        ignore-unfixed: true
+        severity: CRITICAL,HIGH
+        exit-code: 1
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-devsecops:latest .
+
+    - name: Run Trivy on Docker image
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: my-devsecops:latest
+        format: table
+        exit-code: 1
+        ignore-unfixed: true
+        severity: CRITICAL,HIGH
+
+    - name: DockerHub Login
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Push Docker image to DockerHub
+      run: |
+        docker tag my-devsecops:latest ${{ secrets.DOCKER_USERNAME }}/my-devsecops:latest
+        docker push ${{ secrets.DOCKER_USERNAME }}/my-devsecops:latest
+

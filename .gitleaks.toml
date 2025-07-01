@@ -1,0 +1,4 @@
+[allowlist]
+description = "Allow known test patterns"
+regexes = ['dummy-secret']
+
