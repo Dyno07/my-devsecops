@@ -13,6 +13,7 @@ This repository demonstrates a secure and automated CI/CD pipeline using GitHub 
 
 ## Struktur :
 
+```
 my-devsecops/
 ├── .github/
 │   └── workflows/
@@ -24,11 +25,11 @@ my-devsecops/
 ├── .gitleaks.toml                     # Konfigurasi rule untuk Gitleaks
 ├── trivy-ignore.yaml                  # Daftar CVE yang di-ignore oleh Trivy
 └── README.md                          # Dokumentasi project
-
+```
 ---
 
 ## 🧪 How to Run Locally
--- bash --
+```bash
 
 # Build the Docker image
 docker build -t my-devsecops .
