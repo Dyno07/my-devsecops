@@ -7,6 +7,7 @@ This repository demonstrates a secure and automated CI/CD pipeline using GitHub 
 - **Docker** – Containerization and image distribution
 - **Trivy** – Scanning for vulnerabilities in files and Docker images
 - **Gitleaks** – Scanning for hardcoded secrets and credentials
+- **SonarQube** - Improve code quality and catch problems before deploying
 - **GitHub Actions** – CI/CD automation
 
 ---
@@ -17,13 +18,15 @@ This repository demonstrates a secure and automated CI/CD pipeline using GitHub 
 my-devsecops/
 ├── .github/
 │   └── workflows/
-│       └── ci-cd-devsecops.yml        # GitHub Actions pipeline untuk CI/CD + security scan
+│       └── ci-cd-devsecops.yml        # GitHub Actions pipeline untuk CI/CD + security scan (Gitleaks dan Trivy)
+|       └── ci-sonarqube-pipeline.yml  # Github Actions pipeline untuk CI/CD + SonarQube
 ├── app/
 │   └── main.py                        # Source code aplikasi utama
 ├── Dockerfile                         # Instruksi build Docker image
 ├── requirements.txt                   # Daftar dependency Python (jika ada)
 ├── .gitleaks.toml                     # Konfigurasi rule untuk Gitleaks
 ├── trivy-ignore.yaml                  # Daftar CVE yang di-ignore oleh Trivy
+├── sonar-project.properties           # File konfigurasi untuk SonarQube
 └── README.md                          # Dokumentasi project
 ```
 ---
