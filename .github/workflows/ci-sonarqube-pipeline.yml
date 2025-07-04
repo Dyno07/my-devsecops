@@ -18,7 +18,7 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@master
       with:
         args: >
-          -Dsonar.organization=my-org-name
-          -Dsonar.projectKey=my-devsecops
+          -Dsonar.organization=dynosonarqube
+          -Dsonar.projectKey=Dyno07_my-devsecops
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
