@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: SonarQube Scan via SonarCloud
       uses: sonarsource/sonarcloud-github-action@master
@@ -20,5 +22,5 @@ jobs:
         args: >
           -Dsonar.organization=dynosonarqube
           -Dsonar.projectKey=Dyno07_my-devsecops
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.token=${{ secrets.SONAR_TOKEN }}
 
