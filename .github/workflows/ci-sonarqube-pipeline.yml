@@ -1,0 +1,24 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  sonarqube:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: SonarQube Scan via SonarCloud
+      uses: sonarsource/sonarcloud-github-action@master
+      with:
+        args: >
+          -Dsonar.organization=my-org-name
+          -Dsonar.projectKey=my-devsecops
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
