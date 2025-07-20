@@ -2,6 +2,8 @@
 
 This repository demonstrates a secure and automated CI/CD pipeline using GitHub Actions, with integrated security scanning tools to enhance code and image integrity before deployment.
 
+---
+
 ## 🔧 Tools & Stack
 
 - **Docker** – Containerization and image distribution
@@ -40,4 +42,4 @@ docker build -t my-devsecops .
 # Run the container (adjust port if needed)
 docker run -p 5100:5100 my-devsecops
 
----  Thank You  ---
+- Thank You -
